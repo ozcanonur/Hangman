@@ -1,13 +1,59 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hangman</title>
-</head>
-
-<body>
-  Hello
-</body>
-
+  <body>
+    <header class="header">
+      <div class="header__left">
+        <div class="header__left__text">New Game</div>
+      </div>
+      <div class="header__title">
+        <div class="header__title__img"></div>
+        <p class="header__title__text">Hangman</p>
+      </div>
+      <div class="header__right">
+        <div class="header__right__text">Exit Game</div>
+      </div>
+    </header>
+    <section class="game">
+      <div class="game__hangman">
+        <img class="game__hangman_img" src="../img/hangman8.png" alt="hangman" />
+      </div>
+      <div class="game__letters"></div>
+    </section>
+    <section class="bottom-panel">
+      <div class="bottom-panel__chat-panel">
+        <div class="bottom-panel__chat-panel__life--user">User life</div>
+        <div class="bottom-panel__chat-panel__life--enemy">Enemy life</div>
+        <div class="bottom-panel__chat-panel__chat">
+          <div class="bottom-panel__chat-panel__chat__messages">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sunt tempora consectetur
+            corrupti! Odit quos cum enim repellat doloribus molestias consectetur accusantium ipsum. Sint, a,
+            alias aspernatur magni pariatur laudantium, porro praesentium ad optio sit libero. Sint velit in
+            nisi dolor vel, tempora voluptatum nobis dicta tempore ipsum officiis laborum pariatur blanditiis
+            ipsam architecto fuga nam molestiae dolorum iure quis reiciendis illo nulla. Ipsum, voluptate, qui
+            est totam eius nostrum reiciendis possimus corporis a natus saepe distinctio odit velit
+            necessitatibus id pariatur porro illum eveniet, assumenda nulla! Id nam expedita sint quam
+            laborum, dicta blanditiis cupiditate quia! Tempore, voluptate repellat.
+          </div>
+        </div>
+        <form class="bottom-panel__chat-panel__typing-area">
+          <input
+            class="bottom-panel__chat-panel__typing-area__input"
+            type="text"
+            class="message"
+            placeholder="Message"
+            autocomplete="off"
+          />
+          <button class="bottom-panel__chat-panel__typing-area__button">Send</button>
+        </form>
+      </div>
+      <div class="bottom-panel__right-panel">Bottom right panel</div>
+    </section>
+  </body>
 </html>

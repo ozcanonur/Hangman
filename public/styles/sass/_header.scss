@@ -1,0 +1,75 @@
+.header {
+  display: flex;
+  height: 10vh;
+
+  &__left {
+    width: 30%;
+    background-image: linear-gradient(to right, rgba($color-primary-dark, 0.8), rgba($color-primary-light, 0.8));
+    background-size: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+    padding: 2rem;
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &__text {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      transform: rotate(-11deg);
+      margin-left: 10rem;
+      margin-top: -3rem;
+      color: $color-grey-dark-3;
+      transition: all 0.2s;
+    }
+
+    &:hover &__text {
+      transform: rotate(0);
+    }
+  }
+
+  &__right {
+    width: 30%;
+    background-image: linear-gradient(to left, rgba($color-primary-dark, 0.8), rgba($color-primary-light, 0.8));
+    padding: 3rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &__text {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      text-align: right;
+      margin-top: -3.5rem;
+      margin-right: 8rem;
+      transform: rotate(11deg);
+      color: $color-grey-dark-3;
+      transition: all 0.2s;
+    }
+
+    &:hover &__text {
+      transform: rotate(0);
+    }
+  }
+
+  &__title {
+    width: 40%;
+    background-color: $color-secondary-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__img {
+      display: block;
+      width: 10rem;
+      height: 10rem;
+      background: url("../img/titleRope.svg");
+      background-size: 10rem 10rem;
+    }
+
+    &__text {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      text-align: center;
+      color: white;
+    }
+  }
+}
