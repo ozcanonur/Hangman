@@ -23,21 +23,9 @@
     </header>
     <section class="game">
       <div class="game__hangman">
-        <img class="game__hangman_img" src="../img/hangman8.png" alt="hangman" />
+        <img id="hangman-img" class="game__hangman_img" src="../img/hangman1.png" alt="hangman" />
       </div>
-      <ul class="game__letters">
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <!-- <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li>
-        <li class="game__letters__letter"></li> -->
-      </ul>
+      <ul id="game-letters" class="game__letters"></ul>
     </section>
     <section class="bottom-panel">
       <div class="bottom-panel__chat-panel">
@@ -61,6 +49,7 @@
         <ul class="bottom-panel__keyboard__list">
           <li class="bottom-panel__keyboard__list__letter">A</li>
           <li class="bottom-panel__keyboard__list__letter">B</li>
+          <li class="bottom-panel__keyboard__list__letter">C</li>
           <li class="bottom-panel__keyboard__list__letter">D</li>
           <li class="bottom-panel__keyboard__list__letter">E</li>
           <li class="bottom-panel__keyboard__list__letter">F</li>
@@ -89,7 +78,7 @@
     </section>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/base.js"></script>
+    <script src="/js/util.js"></script>
     <script src="/js/client.js"></script>
   </body>
 </html>

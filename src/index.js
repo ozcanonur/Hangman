@@ -9,24 +9,31 @@ const io = socketio(server);
 
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
-
 app.use(express.static(publicDirectoryPath));
 
-const hangmanWords = ['Onur', 'Rachel'];
-const hangmanCurrentWord = hangmanWords[0];
+const words = require('./words');
+
+const { getRandomWord, findIndicesOfLetterInWord } = require('./util');
 
 io.on('connection', (socket) => {
-  // When a client emits join
+  const word = getRandomWord(words, 50);
+  let guessesLeft = 7;
+
   socket.on('join', () => {
-    socket.join();
+    socket.emit('join', word.length);
   });
 
-  socket.on('letterSelected', (letter) => {
-    if (hangmanCurrentWord.includes(letter)) io.emit('letterFeedback', 'Correct letter');
-    else io.emit('letterFeedback', 'Wrong letter');
+  socket.on('select', (letter) => {
+    const foundIndices = findIndicesOfLetterInWord(word, letter);
+    if (foundIndices.length === 0) guessesLeft -= 1;
+
+    if (guessesLeft === 0) return socket.emit('gameOver', word);
+
+    return socket.emit('feedback', { letter, foundIndices, guessesLeft });
   });
 });
 
 server.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server is up on port ${port}`);
 });
