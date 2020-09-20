@@ -8,11 +8,11 @@ const isFullyCorrectAnswer = (gameLetters) => {
 };
 
 const setupQuestionScreen = (wordLength) => {
-  const gameLetterList = document.querySelector('#game-letters');
+  const gameLetterList = document.querySelector('#game-player-letters');
   gameLetterList.innerHTML = '';
   for (let i = 0; i < wordLength; i += 1) {
     const gameLetter = document.createElement('li');
-    gameLetter.className += 'game__letters__letter';
+    gameLetter.className += 'game__player__letters__letter';
     gameLetterList.appendChild(gameLetter);
   }
 };
@@ -40,24 +40,14 @@ const disableAlreadyChosenLetter = (chosenLetter) => {
 };
 
 const handleWrongFeedback = (guessesLeft) => {
-  const hangmanImg = document.querySelector('#hangman-img');
+  const hangmanImg = document.querySelector('#player-hangman-img');
   hangmanImg.src = `../img/hangman${8 - guessesLeft}.png`;
 };
 
 const handleCorrectFeedback = (letter, foundIndices) => {
-  const gameLetters = document.getElementsByClassName('game__letters__letter');
+  const gameLetters = document.getElementsByClassName('game__player__letters__letter');
   foundIndices.forEach((index) => {
     const toBeUpdatedLetter = gameLetters[index];
     toBeUpdatedLetter.textContent = letter;
-  });
-};
-
-const setupChat = (socket) => {
-  const messageForm = document.querySelector('#message-form');
-  messageForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const message = e.target.elements[0].value;
-    socket.emit('message', message);
   });
 };

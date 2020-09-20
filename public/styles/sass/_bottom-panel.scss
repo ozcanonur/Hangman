@@ -7,10 +7,10 @@
     flex-direction: column;
     width: 75%;
     position: relative;
-    background-image: linear-gradient(to right, rgba($color-primary-dark, 0.8), rgba($color-primary-light, 0.8));
+    background-image: linear-gradient(to right, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.8));
 
     &__chat {
-      height: 70%;
+      height: 80%;
       padding: 2rem;
       padding-bottom: 1rem;
 
@@ -19,13 +19,13 @@
         height: 100%;
         font-size: $default-font-size;
         padding: 1rem;
-        background-color: white;
+        background-color: #eee;
         overflow: auto;
       }
     }
 
     &__typing-area {
-      height: 30%;
+      height: 20%;
       padding: 2rem;
       padding-top: 1rem;
       display: flex;
@@ -37,6 +37,7 @@
         padding: 1rem;
         box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.4);
         font-size: $default-font-size;
+        background-color: #eee;
       }
 
       &__button {
@@ -44,7 +45,7 @@
         padding: 1rem 2rem;
         border: none;
         cursor: pointer;
-        background-color: $color-primary-dark;
+        background-color: $color-dark-blue;
         color: white;
         box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.4);
         transition: all 0.2s;
@@ -76,7 +77,7 @@
 
   &__keyboard {
     width: 25%;
-    background-image: linear-gradient(to right, rgba($color-primary-light, 0.8), rgba($color-primary-light, 0.8));
+    background-color: rgba($color-dark-blue, 0.8);
     display: flex;
     align-items: center;
 
@@ -91,7 +92,6 @@
         border: none;
         font-size: 4rem;
         list-style: none;
-        border: 1px solid rgba(#777, 0.4);
         color: $color-grey-dark-3;
         box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.4);
         margin-right: 1rem;
@@ -102,6 +102,7 @@
         justify-content: center;
         cursor: pointer;
         margin-bottom: 1rem;
+        background-color: #eee;
         transition: all 0.2s;
 
         &:hover {

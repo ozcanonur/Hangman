@@ -1,85 +1,25 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hangman</title>
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="icon" href="/img/favicon.png" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet" />
-  </head>
 
-  <body>
-    <header class="header">
-      <div class="header__left">
-        <div class="header__left__text">New</div>
-      </div>
-      <div class="header__title">
-        <div class="header__title__img"></div>
-        <p class="header__title__text">Hangman</p>
-      </div>
-      <div class="header__right">
-        <div class="header__right__text">Exit</div>
-      </div>
-    </header>
-    <section class="game">
-      <div class="game__hangman">
-        <img id="hangman-img" class="game__hangman_img" src="../img/hangman1.png" alt="hangman" />
-      </div>
-      <ul id="game-letters" class="game__letters"></ul>
-    </section>
-    <section class="bottom-panel">
-      <div class="bottom-panel__chat-panel">
-        <div class="bottom-panel__chat-panel__life--user">User life</div>
-        <div class="bottom-panel__chat-panel__life--enemy">Enemy life</div>
-        <div class="bottom-panel__chat-panel__chat">
-          <div id="old-messages" class="bottom-panel__chat-panel__chat__messages"></div>
-        </div>
-        <form id="message-form" class="bottom-panel__chat-panel__typing-area">
-          <input
-            id="message-form-input"
-            class="bottom-panel__chat-panel__typing-area__input"
-            type="text"
-            class="message"
-            placeholder="Message"
-            autocomplete="off"
-          />
-          <button class="bottom-panel__chat-panel__typing-area__button">Send</button>
-        </form>
-      </div>
-      <div class="bottom-panel__keyboard">
-        <ul class="bottom-panel__keyboard__list">
-          <li class="bottom-panel__keyboard__list__letter">A</li>
-          <li class="bottom-panel__keyboard__list__letter">B</li>
-          <li class="bottom-panel__keyboard__list__letter">C</li>
-          <li class="bottom-panel__keyboard__list__letter">D</li>
-          <li class="bottom-panel__keyboard__list__letter">E</li>
-          <li class="bottom-panel__keyboard__list__letter">F</li>
-          <li class="bottom-panel__keyboard__list__letter">G</li>
-          <li class="bottom-panel__keyboard__list__letter">H</li>
-          <li class="bottom-panel__keyboard__list__letter">I</li>
-          <li class="bottom-panel__keyboard__list__letter">J</li>
-          <li class="bottom-panel__keyboard__list__letter">K</li>
-          <li class="bottom-panel__keyboard__list__letter">L</li>
-          <li class="bottom-panel__keyboard__list__letter">M</li>
-          <li class="bottom-panel__keyboard__list__letter">N</li>
-          <li class="bottom-panel__keyboard__list__letter">O</li>
-          <li class="bottom-panel__keyboard__list__letter">P</li>
-          <li class="bottom-panel__keyboard__list__letter">Q</li>
-          <li class="bottom-panel__keyboard__list__letter">R</li>
-          <li class="bottom-panel__keyboard__list__letter">S</li>
-          <li class="bottom-panel__keyboard__list__letter">T</li>
-          <li class="bottom-panel__keyboard__list__letter">U</li>
-          <li class="bottom-panel__keyboard__list__letter">V</li>
-          <li class="bottom-panel__keyboard__list__letter">W</li>
-          <li class="bottom-panel__keyboard__list__letter">X</li>
-          <li class="bottom-panel__keyboard__list__letter">Y</li>
-          <li class="bottom-panel__keyboard__list__letter">Z</li>
-        </ul>
-      </div>
-    </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/img/favicon.png" />
+  <title>Login</title>
+</head>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/util.js"></script>
-    <script src="/js/client.js"></script>
-  </body>
+<body>
+  <div class="centered-form">
+    <div class="centered-form__box">
+      <h1>Join</h1>
+      <form action="/hangman.html">
+        <label>Display name</label>
+        <input type="text" name="username" placeholder="Display name" value="Onur" required>
+        <label>Room</label>
+        <input type="text" name="room" placeholder="Room" value="Room 1" required>
+        <button>Join</button>
+      </form>
+    </div>
+  </div>
+</body>
+
 </html>
