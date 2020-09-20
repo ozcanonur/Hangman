@@ -9,6 +9,7 @@ const isFullyCorrectAnswer = (gameLetters) => {
 
 const setupQuestionScreen = (wordLength) => {
   const gameLetterList = document.querySelector('#game-letters');
+  gameLetterList.innerHTML = '';
   for (let i = 0; i < wordLength; i += 1) {
     const gameLetter = document.createElement('li');
     gameLetter.className += 'game__letters__letter';

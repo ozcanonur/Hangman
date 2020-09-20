@@ -20,16 +20,16 @@ io.on('connection', (socket) => {
   let guessesLeft = 7;
 
   socket.on('join', () => {
-    socket.emit('join', word.length);
+    io.emit('join', word.length);
   });
 
   socket.on('select', (letter) => {
     const foundIndices = findIndicesOfLetterInWord(word, letter);
     if (foundIndices.length === 0) guessesLeft -= 1;
 
-    if (guessesLeft === 0) return socket.emit('gameOver', word);
+    if (guessesLeft === 0) return io.emit('gameOver', word);
 
-    return socket.emit('feedback', { letter, foundIndices, guessesLeft });
+    return io.emit('feedback', { letter, foundIndices, guessesLeft });
   });
 });
 
