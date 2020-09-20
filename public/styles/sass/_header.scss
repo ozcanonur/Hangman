@@ -1,11 +1,11 @@
 .header {
   display: flex;
   height: 10vh;
-  background-color: #eee;
 
   &__left {
     width: 30%;
-    background-image: linear-gradient(to right, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.2));
+    background-color: rgba($color-dark-blue, 0.8);
+    // background-image: linear-gradient(to right, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.2));
     background-size: cover;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
     padding: 2rem;
@@ -29,7 +29,8 @@
 
   &__right {
     width: 30%;
-    background-image: linear-gradient(to left, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.2));
+    background-color: rgba($color-dark-blue, 0.8);
+    // background-image: linear-gradient(to left, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.2));
     padding: 3rem;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
     transition: all 0.2s;
@@ -65,4 +66,12 @@
       color: white;
     }
   }
+}
+
+.hacky-fix {
+  position: absolute;
+  width: 30%;
+  height: 10vh;
+  right: 0;
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
 }

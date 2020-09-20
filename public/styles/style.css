@@ -15,11 +15,10 @@ html {
 
 .header {
   display: flex;
-  height: 10vh;
-  background-color: #eee; }
+  height: 10vh; }
   .header__left {
     width: 30%;
-    background-image: linear-gradient(to right, rgba(65, 103, 136, 0.8), rgba(181, 186, 208, 0.2));
+    background-color: rgba(65, 103, 136, 0.8);
     background-size: cover;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
     padding: 2rem;
@@ -37,7 +36,7 @@ html {
       transform: rotate(0); }
   .header__right {
     width: 30%;
-    background-image: linear-gradient(to left, rgba(65, 103, 136, 0.8), rgba(181, 186, 208, 0.2));
+    background-color: rgba(65, 103, 136, 0.8);
     padding: 3rem;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
     transition: all 0.2s;
@@ -65,6 +64,13 @@ html {
       text-align: center;
       color: white; }
 
+.hacky-fix {
+  position: absolute;
+  width: 30%;
+  height: 10vh;
+  right: 0;
+  clip-path: polygon(0 0, 100% 100%, 0 100%); }
+
 .game {
   height: 60vh;
   display: flex; }
@@ -75,12 +81,11 @@ html {
     justify-content: center;
     border-right: 5px solid gray;
     padding: 2rem;
-    position: relative;
-    background-color: #eee; }
+    position: relative; }
     .game__player__title {
       position: absolute;
       font-size: 6rem;
-      top: 1rem;
+      top: 2rem;
       font-weight: 300;
       text-transform: uppercase; }
     .game__player__hangman {
@@ -120,12 +125,11 @@ html {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    position: relative;
-    background-color: #eee; }
+    position: relative; }
     .game__opponent__title {
       position: absolute;
       font-size: 6rem;
-      top: 1rem;
+      top: 2rem;
       font-weight: 300;
       text-transform: uppercase; }
     .game__opponent__hangman {
@@ -168,7 +172,7 @@ html {
     flex-direction: column;
     width: 75%;
     position: relative;
-    background-image: linear-gradient(to right, rgba(65, 103, 136, 0.8), rgba(181, 186, 208, 0.8)); }
+    background-color: rgba(65, 103, 136, 0.8); }
     .bottom-panel__chat-panel__chat {
       height: 80%;
       padding: 2rem;
@@ -178,8 +182,8 @@ html {
         height: 100%;
         font-size: 1.6rem;
         padding: 1rem;
-        background-color: #eee;
-        overflow: auto; }
+        overflow: auto;
+        background-color: white; }
     .bottom-panel__chat-panel__typing-area {
       height: 20%;
       padding: 2rem;
@@ -191,8 +195,7 @@ html {
         border: 1px solid rgba(119, 119, 119, 0.2);
         padding: 1rem;
         box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.4);
-        font-size: 1.6rem;
-        background-color: #eee; }
+        font-size: 1.6rem; }
       .bottom-panel__chat-panel__typing-area__button {
         display: inline-block;
         padding: 1rem 2rem;
@@ -243,8 +246,8 @@ html {
         justify-content: center;
         cursor: pointer;
         margin-bottom: 1rem;
-        background-color: #eee;
-        transition: all 0.2s; }
+        transition: all 0.2s;
+        background-color: white; }
         .bottom-panel__keyboard__list__letter:hover {
           transform: scale(1.2) translateY(-1rem);
           background-color: black;

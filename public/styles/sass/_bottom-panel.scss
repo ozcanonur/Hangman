@@ -7,8 +7,8 @@
     flex-direction: column;
     width: 75%;
     position: relative;
-    background-image: linear-gradient(to right, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.8));
-
+    background-color: rgba($color-dark-blue, 0.8);
+    // background-image: linear-gradient(to right, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.8));
     &__chat {
       height: 80%;
       padding: 2rem;
@@ -19,8 +19,8 @@
         height: 100%;
         font-size: $default-font-size;
         padding: 1rem;
-        background-color: #eee;
         overflow: auto;
+        background-color: white;
       }
     }
 
@@ -37,7 +37,6 @@
         padding: 1rem;
         box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.4);
         font-size: $default-font-size;
-        background-color: #eee;
       }
 
       &__button {
@@ -102,8 +101,8 @@
         justify-content: center;
         cursor: pointer;
         margin-bottom: 1rem;
-        background-color: #eee;
         transition: all 0.2s;
+        background-color: white;
 
         &:hover {
           transform: scale(1.2) translateY(-1rem);

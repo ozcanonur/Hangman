@@ -34,7 +34,9 @@ io.on('connection', (socket) => {
 
     // Join the room
     socket.join(user.room);
+    // Emit welcome message to self
     socket.emit('message', { name: 'Admin', message: `Welcome ${user.username}` });
+    // Emit user joined message to others
     socket.broadcast.to(user.room).emit('message', { name: user.username, message: 'has entered the room.' });
 
     // Find opponent
@@ -63,6 +65,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('message', (message, callback) => {
+    // Get the user who sent the message and emit the message to everyone in room
     const user = getUser(users, socket.id);
     io.to(user.room).emit('message', { name: user.username, message, createdAt: new Date().getTime() });
     callback();
