@@ -32,10 +32,11 @@
         <div class="bottom-panel__chat-panel__life--user">User life</div>
         <div class="bottom-panel__chat-panel__life--enemy">Enemy life</div>
         <div class="bottom-panel__chat-panel__chat">
-          <div class="bottom-panel__chat-panel__chat__messages"></div>
+          <div id="old-messages" class="bottom-panel__chat-panel__chat__messages"></div>
         </div>
-        <form class="bottom-panel__chat-panel__typing-area">
+        <form id="message-form" class="bottom-panel__chat-panel__typing-area">
           <input
+            id="message-form-input"
             class="bottom-panel__chat-panel__typing-area__input"
             type="text"
             class="message"

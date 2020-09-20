@@ -31,6 +31,10 @@ io.on('connection', (socket) => {
 
     return io.emit('feedback', { letter, foundIndices, guessesLeft });
   });
+
+  socket.on('message', (message) => {
+    io.emit('message', message);
+  });
 });
 
 server.listen(port, () => {

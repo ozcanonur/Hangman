@@ -116,7 +116,8 @@ html {
         height: 100%;
         font-size: 1.6rem;
         padding: 1rem;
-        background-color: white; }
+        background-color: white;
+        overflow: auto; }
     .bottom-panel__chat-panel__typing-area {
       height: 30%;
       padding: 2rem;

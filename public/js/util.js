@@ -51,3 +51,13 @@ const handleCorrectFeedback = (letter, foundIndices) => {
     toBeUpdatedLetter.textContent = letter;
   });
 };
+
+const setupChat = (socket) => {
+  const messageForm = document.querySelector('#message-form');
+  messageForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const message = e.target.elements[0].value;
+    socket.emit('message', message);
+  });
+};

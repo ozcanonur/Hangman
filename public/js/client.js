@@ -5,7 +5,7 @@
 const socket = io();
 // Open the socket to join the server
 socket.emit('join');
-
+setupChat(socket);
 // Create the question on screen with empty letters on join
 socket.on('join', (wordLength) => {
   setupQuestionScreen(wordLength);
@@ -27,4 +27,15 @@ socket.on('gameOver', (hangmanCurrentWord) => {
   const hangmanImg = document.querySelector('#hangman-img');
   hangmanImg.src = '../img/hangman8.png';
   return alert(`Failed. The correct word was ${hangmanCurrentWord}`);
+});
+
+socket.on('message', (message) => {
+  const messageDiv = document.createElement('div');
+  messageDiv.innerHTML = message;
+
+  const oldMessagesField = document.querySelector('#old-messages');
+  oldMessagesField.appendChild(messageDiv);
+
+  const messageInputField = document.querySelector('#message-form-input');
+  messageInputField.value = '';
 });
