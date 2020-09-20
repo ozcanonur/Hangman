@@ -4,43 +4,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="/img/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet" />
   </head>
 
   <body>
     <header class="header">
       <div class="header__left">
-        <div class="header__left__text">New Game</div>
+        <div class="header__left__text">New</div>
       </div>
       <div class="header__title">
         <div class="header__title__img"></div>
         <p class="header__title__text">Hangman</p>
       </div>
       <div class="header__right">
-        <div class="header__right__text">Exit Game</div>
+        <div class="header__right__text">Exit</div>
       </div>
     </header>
     <section class="game">
       <div class="game__hangman">
         <img class="game__hangman_img" src="../img/hangman8.png" alt="hangman" />
       </div>
-      <div class="game__letters"></div>
+      <ul class="game__letters">
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <!-- <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li>
+        <li class="game__letters__letter"></li> -->
+      </ul>
     </section>
     <section class="bottom-panel">
       <div class="bottom-panel__chat-panel">
         <div class="bottom-panel__chat-panel__life--user">User life</div>
         <div class="bottom-panel__chat-panel__life--enemy">Enemy life</div>
         <div class="bottom-panel__chat-panel__chat">
-          <div class="bottom-panel__chat-panel__chat__messages">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sunt tempora consectetur
-            corrupti! Odit quos cum enim repellat doloribus molestias consectetur accusantium ipsum. Sint, a,
-            alias aspernatur magni pariatur laudantium, porro praesentium ad optio sit libero. Sint velit in
-            nisi dolor vel, tempora voluptatum nobis dicta tempore ipsum officiis laborum pariatur blanditiis
-            ipsam architecto fuga nam molestiae dolorum iure quis reiciendis illo nulla. Ipsum, voluptate, qui
-            est totam eius nostrum reiciendis possimus corporis a natus saepe distinctio odit velit
-            necessitatibus id pariatur porro illum eveniet, assumenda nulla! Id nam expedita sint quam
-            laborum, dicta blanditiis cupiditate quia! Tempore, voluptate repellat.
-          </div>
+          <div class="bottom-panel__chat-panel__chat__messages"></div>
         </div>
         <form class="bottom-panel__chat-panel__typing-area">
           <input
@@ -53,7 +57,39 @@
           <button class="bottom-panel__chat-panel__typing-area__button">Send</button>
         </form>
       </div>
-      <div class="bottom-panel__right-panel">Bottom right panel</div>
+      <div class="bottom-panel__keyboard">
+        <ul class="bottom-panel__keyboard__list">
+          <li class="bottom-panel__keyboard__list__letter">A</li>
+          <li class="bottom-panel__keyboard__list__letter">B</li>
+          <li class="bottom-panel__keyboard__list__letter">D</li>
+          <li class="bottom-panel__keyboard__list__letter">E</li>
+          <li class="bottom-panel__keyboard__list__letter">F</li>
+          <li class="bottom-panel__keyboard__list__letter">G</li>
+          <li class="bottom-panel__keyboard__list__letter">H</li>
+          <li class="bottom-panel__keyboard__list__letter">I</li>
+          <li class="bottom-panel__keyboard__list__letter">J</li>
+          <li class="bottom-panel__keyboard__list__letter">K</li>
+          <li class="bottom-panel__keyboard__list__letter">L</li>
+          <li class="bottom-panel__keyboard__list__letter">M</li>
+          <li class="bottom-panel__keyboard__list__letter">N</li>
+          <li class="bottom-panel__keyboard__list__letter">O</li>
+          <li class="bottom-panel__keyboard__list__letter">P</li>
+          <li class="bottom-panel__keyboard__list__letter">Q</li>
+          <li class="bottom-panel__keyboard__list__letter">R</li>
+          <li class="bottom-panel__keyboard__list__letter">S</li>
+          <li class="bottom-panel__keyboard__list__letter">T</li>
+          <li class="bottom-panel__keyboard__list__letter">U</li>
+          <li class="bottom-panel__keyboard__list__letter">V</li>
+          <li class="bottom-panel__keyboard__list__letter">W</li>
+          <li class="bottom-panel__keyboard__list__letter">X</li>
+          <li class="bottom-panel__keyboard__list__letter">Y</li>
+          <li class="bottom-panel__keyboard__list__letter">Z</li>
+        </ul>
+      </div>
     </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/client.js"></script>
   </body>
 </html>
