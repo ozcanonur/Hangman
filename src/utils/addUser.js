@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 const validateUser = (users, username, room) => {
@@ -16,7 +17,7 @@ const validateRoom = (users, room) => {
   if (roomSize === 2) return { error: 'Room is full' };
 };
 
-const addUser = (users, id, username, room) => {
+const addUser = (users, id, username, room, word) => {
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
@@ -27,7 +28,7 @@ const addUser = (users, id, username, room) => {
   if (isRoomFull) return isRoomFull;
 
   // Store user, this is questionable? why do we keep user list on client side
-  const user = { id, username, room };
+  const user = { id, username, room, word };
   users.push(user);
   return { user };
 };

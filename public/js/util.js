@@ -7,8 +7,13 @@ const isFullyCorrectAnswer = (gameLetters) => {
   return true;
 };
 
-const setupQuestionScreen = (wordLength) => {
-  const gameLetterList = document.querySelector('#game-player-letters');
+const setupBoard = (wordLength, player) => {
+  // eslint-disable-next-line operator-linebreak
+  const gameLetterList =
+    player === 'self'
+      ? document.querySelector('#game-player-letters')
+      : document.querySelector('#game-opponent-letters');
+
   gameLetterList.innerHTML = '';
   for (let i = 0; i < wordLength; i += 1) {
     const gameLetter = document.createElement('li');

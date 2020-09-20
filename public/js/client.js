@@ -53,9 +53,13 @@ socket.on('message', ({ name, message, createdAt }) => {
 });
 
 // Create the question on screen with empty letters on join
-socket.on('join', (wordLength) => {
-  setupQuestionScreen(wordLength);
+socket.on('setupBoard', (wordLength) => {
+  setupBoard(wordLength, 'self');
   setupKeyboardEventListeners(socket);
+});
+
+socket.on('opponentBoard', (wordLength) => {
+  setupBoard(wordLength, 'opponent');
 });
 
 // Get the feedback if the letter was correct or not

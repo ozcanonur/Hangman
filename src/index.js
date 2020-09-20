@@ -17,19 +17,19 @@ const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirectoryPath));
 
-// const words = require('./words');
-// const { getRandomWord, findIndicesOfLetterInWord } = require('./util');
+const { getRandomWord } = require('./utils/hangman');
 
-// WOOP WOOP room name lower case fucks up
+const words = require('./words');
+// WOOP WOOP room name and user name lower case fucks up
 const users = [];
 
 io.on('connection', (socket) => {
-  // const word = getRandomWord(words, 50);
-  // let guessesLeft = 7;
+  const word = getRandomWord(words, 50);
+  let guessesLeft = 7;
 
   socket.on('join', ({ username, room }, callback) => {
     // Add the user to users list, {id, username, room}
-    const { error, user } = addUser(users, socket.id, username, room);
+    const { error, user } = addUser(users, socket.id, username, room, word);
     if (error) return callback(error);
 
     // Join the room
@@ -45,6 +45,13 @@ io.on('connection', (socket) => {
       // Emit your name to the opponent
       socket.broadcast.to(user.room).emit('opponentName', username);
     }
+
+    // Setup own board
+    socket.emit('setupBoard', word.length);
+    // Setup opponent's board
+    if (opponent) socket.emit('opponentBoard', opponent.word.length);
+    // Send own board to opponent
+    socket.broadcast.to(user.room).emit('opponentBoard', word.length);
 
     callback();
   });
