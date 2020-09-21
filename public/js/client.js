@@ -6,6 +6,8 @@
 /* eslint-disable no-console */
 const socket = io();
 
+const { username, room } = Qs.parse(window.location.search, { ignoreQueryPrefix: true });
+
 document.querySelector('#header-exit').addEventListener('click', () => {
   window.location.href = '/';
 });
@@ -20,14 +22,11 @@ messageForm.addEventListener('submit', (e) => {
   });
 });
 
-const { username, room } = Qs.parse(window.location.search, { ignoreQueryPrefix: true });
-
 socket.emit('join', { username, room }, (error) => {
   if (error) {
     alert(error);
     window.location.href = '/';
   }
-
   document.querySelector('#player-name').innerHTML = username;
 });
 
@@ -53,7 +52,6 @@ socket.on('message', ({ name, message, createdAt }) => {
   createAndShowMessage(name, message, createdAt);
 });
 
-// Create the question on screen with empty letters on join
 socket.on('setupBoard', (wordLength) => {
   setupBoard(wordLength, 'self');
   setupKeyboardEventListeners(socket, username);
@@ -99,14 +97,35 @@ socket.on('opponentWon', (word) => {
 });
 
 socket.on('noGuessesLeft', (word) => {
-  alert(`You have no guesses left :(. Your word was ${word}`);
   disableAllKeyboardLetters();
+  const hangmanImg = document.querySelector('#player-hangman-img');
+  hangmanImg.src = '../img/hangman8.png';
+
+  const playerDeadCross = document.querySelector('#player-dead');
+  playerDeadCross.style.display = 'inherit';
+
+  const playerAlert = document.querySelector('#player-alert');
+  playerAlert.style.display = 'inherit';
+  playerAlert.textContent = `No Guesses left. Your word was ${word}`;
 });
 
 socket.on('opponentNoGuessesLeft', () => {
-  alert('Opponent has no guesses left!');
+  const hangmanImg = document.querySelector('#opponent-hangman-img');
+  hangmanImg.src = '../img/hangman8.png';
+
+  const opponentDeadCross = document.querySelector('#opponent-dead');
+  opponentDeadCross.style.display = 'inherit';
+
+  const opponentAlert = document.querySelector('#opponent-alert');
+  opponentAlert.style.display = 'inherit';
+  opponentAlert.textContent = 'Opponent has no guesses left';
 });
 
 socket.on('bothLost', (word) => {
   alert(`Both sides failed :(. Your word was ${word}`);
+  window.location.href = '/';
+});
+
+socket.on('opponentLeft', () => {
+  document.querySelector('#opponent-name').textContent = 'No player';
 });

@@ -11,6 +11,58 @@
     padding: 2rem;
     position: relative;
 
+    &__alert {
+      position: absolute;
+      font-size: 5rem;
+      bottom: 4rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: red;
+      text-align: center;
+      display: none;
+    }
+
+    &__cross {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      box-shadow: 2px 2px 4px 0 white;
+      top: 4rem;
+      display: none;
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        box-shadow: 0 0 2px 0 #ccc;
+      }
+
+      &:before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        transform: rotate(45deg);
+        left: -5rem;
+        width: 15rem;
+        height: 4px;
+        top: 2rem;
+        background-color: red;
+        border-radius: 2px;
+      }
+
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        right: -5rem;
+        width: 15rem;
+        height: 4px;
+        top: 2rem;
+        background-color: red;
+        border-radius: 2px;
+      }
+    }
+
     &__title {
       position: absolute;
       font-size: 6rem;
@@ -66,6 +118,17 @@
     justify-content: center;
     padding: 2rem;
     position: relative;
+
+    &__alert {
+      position: absolute;
+      font-size: 5rem;
+      bottom: 12rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: red;
+      text-align: center;
+      display: none;
+    }
 
     &__title {
       position: absolute;

@@ -4,19 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/img/favicon.png" />
-  <title>Login</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet" />
+  <title>Login to The Hangman</title>
 </head>
 
 <body>
-  <div class="centered-form">
-    <div class="centered-form__box">
-      <h1>Join</h1>
-      <form action="/hangman.html">
-        <label>Display name</label>
-        <input type="text" name="username" placeholder="Display name" value="onur" required>
-        <label>Room</label>
-        <input type="text" name="room" placeholder="Room" value="1" required>
-        <button>Join</button>
+  <div class="login-container">
+    <div class="login-container__box">
+      <h1 class="login-container__header">Join a room</h1>
+      <form class="login-container__form" action="/hangman.html">
+        <label class="login-container__form__label">Display name</label>
+        <input class="login-container__form__input" type="text" name="username" placeholder="Display name" value="onur" required>
+        <label class="login-container__form__label">Room</label>
+        <select name="room" id="selectRoom" class="login-container__form__input">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button class="login-container__form__button">Join</button>
       </form>
     </div>
   </div>

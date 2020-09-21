@@ -1,8 +1,10 @@
+/* eslint-disable curly */
+/* eslint-disable nonblock-statement-body-position */
 /* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 const { getRandomWord } = require('./hangman');
-const words = require('../words');
+const words = require('./words');
 
 const validateUser = (users, username, room) => {
   if (!username || !room) return { error: 'Username and room are required' };
@@ -21,6 +23,9 @@ const validateRoom = (users, room) => {
 };
 
 const addUser = (users, id, username, room) => {
+  if (username.toLowerCase() !== username)
+    return { error: 'Username can only contain lowercase letters' };
+
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
@@ -31,7 +36,7 @@ const addUser = (users, id, username, room) => {
   if (isRoomFull) return isRoomFull;
 
   // Store user
-  const word = getRandomWord(words, 1);
+  const word = getRandomWord(words, 50);
   const lettersLeftToGuess = word.split('');
   const guessesLeft = 7;
   const user = { id, username, room, word, lettersLeftToGuess, guessesLeft };
@@ -39,4 +44,11 @@ const addUser = (users, id, username, room) => {
   return { user };
 };
 
-module.exports = addUser;
+const getUser = (users, id) => users.find((user) => user.id === id);
+
+const removeUser = (users, id) => {
+  const index = users.findIndex((user) => user.id === id);
+  if (index !== -1) return users.splice(index, 1)[0];
+};
+
+module.exports = { addUser, getUser, removeUser };

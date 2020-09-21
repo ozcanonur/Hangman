@@ -13,6 +13,46 @@ html {
   font-size: 62.5%;
   font-family: "Raleway", sans-serif; }
 
+.login-container {
+  background: #416788;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .login-container__box {
+    box-shadow: 0 0 1.6rem 0.5rem rgba(0, 0, 0, 0.4);
+    background-color: #eee;
+    padding: 2.5rem;
+    width: 30%; }
+  .login-container__header {
+    margin-bottom: 2.5rem;
+    line-height: 2;
+    font-size: 5rem;
+    text-align: center; }
+  .login-container__form__label {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #777; }
+  .login-container__form__input {
+    margin-bottom: 2.5rem;
+    width: 100%;
+    border: 1px solid #eee;
+    padding: 1.2rem;
+    outline: none;
+    font-size: 2rem; }
+    .login-container__form__input > option {
+      font-size: 1.8rem; }
+  .login-container__form__button {
+    width: 100%;
+    cursor: pointer;
+    padding: 1.2rem;
+    background-color: #416788;
+    color: white;
+    font-size: 2rem;
+    transition: all 0.2s; }
+
 .header {
   display: flex;
   height: 10vh; }
@@ -82,6 +122,47 @@ html {
     border-right: 5px solid gray;
     padding: 2rem;
     position: relative; }
+    .game__player__alert {
+      position: absolute;
+      font-size: 5rem;
+      bottom: 4rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: red;
+      text-align: center;
+      display: none; }
+    .game__player__cross {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      box-shadow: 2px 2px 4px 0 white;
+      top: 4rem;
+      display: none; }
+      .game__player__cross:before, .game__player__cross:after {
+        content: "";
+        position: absolute;
+        box-shadow: 0 0 2px 0 #ccc; }
+      .game__player__cross:before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        transform: rotate(45deg);
+        left: -5rem;
+        width: 15rem;
+        height: 4px;
+        top: 2rem;
+        background-color: red;
+        border-radius: 2px; }
+      .game__player__cross:after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        right: -5rem;
+        width: 15rem;
+        height: 4px;
+        top: 2rem;
+        background-color: red;
+        border-radius: 2px; }
     .game__player__title {
       position: absolute;
       font-size: 6rem;
@@ -126,6 +207,15 @@ html {
     justify-content: center;
     padding: 2rem;
     position: relative; }
+    .game__opponent__alert {
+      position: absolute;
+      font-size: 5rem;
+      bottom: 12rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: red;
+      text-align: center;
+      display: none; }
     .game__opponent__title {
       position: absolute;
       font-size: 6rem;

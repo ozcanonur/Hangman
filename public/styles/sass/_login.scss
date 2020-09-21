@@ -1,0 +1,54 @@
+.login-container {
+  background: $color-dark-blue;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__box {
+    box-shadow: 0 0 1.6rem 0.5rem rgba(black, 0.4);
+    background-color: #eee;
+    padding: 2.5rem;
+    width: 30%;
+  }
+
+  &__header {
+    margin-bottom: 2.5rem;
+    line-height: 2;
+    font-size: 5rem;
+    text-align: center;
+  }
+
+  &__form {
+    &__label {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #777;
+    }
+
+    &__input {
+      margin-bottom: 2.5rem;
+      width: 100%;
+      border: 1px solid #eee;
+      padding: 1.2rem;
+      outline: none;
+      font-size: 2rem;
+
+      & > option {
+        font-size: 1.8rem;
+      }
+    }
+
+    &__button {
+      width: 100%;
+      cursor: pointer;
+      padding: 1.2rem;
+      background-color: $color-dark-blue;
+      color: white;
+      font-size: 2rem;
+      transition: all 0.2s;
+    }
+  }
+}

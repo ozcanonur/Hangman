@@ -1,12 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
-const isFullyCorrectAnswer = (gameLetters) => {
-  for (let i = 0; i < gameLetters.length; i += 1) {
-    if (gameLetters[i].textContent === '') return false;
-  }
-  return true;
-};
-
 const setupBoard = (wordLength, player) => {
   const ulId = player === 'self' ? '#game-player-letters' : '#game-opponent-letters';
   // eslint-disable-next-line operator-linebreak
@@ -52,18 +45,5 @@ const disableAllKeyboardLetters = () => {
     letter.style.backgroundColor = '#777';
     letter.style.color = '#fff';
     letter.style.pointerEvents = 'none';
-  });
-};
-
-const handleWrongFeedback = (guessesLeft) => {
-  const hangmanImg = document.querySelector('#player-hangman-img');
-  hangmanImg.src = `../img/hangman${8 - guessesLeft}.png`;
-};
-
-const handleCorrectFeedback = (letter, foundIndices) => {
-  const gameLetters = document.getElementsByClassName('game__player__letters__letter');
-  foundIndices.forEach((index) => {
-    const toBeUpdatedLetter = gameLetters[index];
-    toBeUpdatedLetter.textContent = letter;
   });
 };
