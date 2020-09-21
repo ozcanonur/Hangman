@@ -20,6 +20,11 @@
       margin-top: -3rem;
       color: white;
       transition: all 0.2s;
+      @media (max-width: 1200px) {
+        font-size: 3rem;
+        margin-left: 4rem;
+        margin-top: -2rem;
+      }
     }
 
     &:hover &__text {
@@ -45,6 +50,11 @@
       transform: rotate(11deg);
       color: white;
       transition: all 0.2s;
+      @media (max-width: 1200px) {
+        font-size: 3rem;
+        margin-right: 4rem;
+        margin-top: -3rem;
+      }
     }
 
     &:hover &__text {
@@ -64,6 +74,9 @@
       text-transform: uppercase;
       text-align: center;
       color: white;
+      @media (max-width: 1200px) {
+        font-size: 3.5rem;
+      }
     }
   }
 }

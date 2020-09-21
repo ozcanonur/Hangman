@@ -1,14 +1,15 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable no-undef */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
 const socket = io();
 
 const { username, room } = Qs.parse(window.location.search, { ignoreQueryPrefix: true });
 
 document.querySelector('#header-exit').addEventListener('click', () => {
+  window.location.href = '/';
+});
+
+document.querySelector('#header-new').addEventListener('click', () => {
   window.location.href = '/';
 });
 

@@ -8,7 +8,7 @@
     width: 75%;
     position: relative;
     background-color: rgba($color-dark-blue, 0.8);
-    // background-image: linear-gradient(to right, rgba($color-dark-blue, 0.8), rgba($color-light-blue, 0.8));
+
     &__chat {
       height: 80%;
       padding: 2rem;
@@ -103,6 +103,31 @@
         margin-bottom: 1rem;
         transition: all 0.2s;
         background-color: white;
+
+        @media (max-width: 1820px) {
+          font-size: 3rem;
+          width: 4rem;
+        }
+
+        @media (max-width: 1350px) {
+          font-size: 2.5rem;
+          width: 3.5rem;
+        }
+
+        @media (max-width: 1250px) {
+          font-size: 2.2rem;
+          width: 3.2rem;
+        }
+
+        @media (max-width: 1100px) {
+          font-size: 2rem;
+          width: 3rem;
+        }
+
+        @media (max-width: 970px) {
+          font-size: 1.5rem;
+          width: 2.5rem;
+        }
 
         &:hover {
           transform: scale(1.2) translateY(-1rem);

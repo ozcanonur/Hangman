@@ -8,7 +8,7 @@ const onChooseLetter = (io, socket, users, username, selectedLetter) => {
   if (foundIndices.length === 0) user.guessesLeft -= 1;
 
   // If both side loses
-  const isBothLost = !users.some((e) => e.guessesLeft > 0);
+  const isBothLost = !users.some((e) => e.guessesLeft > 0) && users.length > 1;
   if (isBothLost) {
     // Emit to SELF that both lost and your word was
     socket.emit('bothLost', user.word);
