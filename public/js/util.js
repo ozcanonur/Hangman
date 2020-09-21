@@ -8,27 +8,29 @@ const isFullyCorrectAnswer = (gameLetters) => {
 };
 
 const setupBoard = (wordLength, player) => {
+  const ulId = player === 'self' ? '#game-player-letters' : '#game-opponent-letters';
   // eslint-disable-next-line operator-linebreak
-  const gameLetterList =
-    player === 'self'
-      ? document.querySelector('#game-player-letters')
-      : document.querySelector('#game-opponent-letters');
+  const liClassName =
+    player === 'self' ? 'game__player__letters__letter' : 'game__opponent__letters__letter';
+
+  // eslint-disable-next-line operator-linebreak
+  const gameLetterList = document.querySelector(ulId);
 
   gameLetterList.innerHTML = '';
   for (let i = 0; i < wordLength; i += 1) {
     const gameLetter = document.createElement('li');
-    gameLetter.className += 'game__player__letters__letter';
+    gameLetter.className += liClassName;
     gameLetterList.appendChild(gameLetter);
   }
 };
 
-const setupKeyboardEventListeners = (socket) => {
+const setupKeyboardEventListeners = (socket, username) => {
   // Setup keyboard letter event listeners
   const letters = document.getElementsByClassName('bottom-panel__keyboard__list__letter');
   Array.prototype.forEach.call(letters, (letter) => {
     letter.addEventListener('click', (e) => {
       const selectedLetter = e.target.textContent;
-      socket.emit('select', selectedLetter);
+      socket.emit('chooseLetter', { selectedLetter, username });
     });
   });
 };
@@ -41,6 +43,15 @@ const disableAlreadyChosenLetter = (chosenLetter) => {
       letter.style.color = '#fff';
       letter.style.pointerEvents = 'none';
     }
+  });
+};
+
+const disableAllKeyboardLetters = () => {
+  const letters = document.getElementsByClassName('bottom-panel__keyboard__list__letter');
+  Array.prototype.forEach.call(letters, (letter) => {
+    letter.style.backgroundColor = '#777';
+    letter.style.color = '#fff';
+    letter.style.pointerEvents = 'none';
   });
 };
 

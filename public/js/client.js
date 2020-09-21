@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
@@ -55,28 +56,57 @@ socket.on('message', ({ name, message, createdAt }) => {
 // Create the question on screen with empty letters on join
 socket.on('setupBoard', (wordLength) => {
   setupBoard(wordLength, 'self');
-  setupKeyboardEventListeners(socket);
+  setupKeyboardEventListeners(socket, username);
 });
 
 socket.on('opponentBoard', (wordLength) => {
   setupBoard(wordLength, 'opponent');
 });
 
+const handleWrongLetter = (imgId, guessesLeft) => {
+  const hangmanImg = document.querySelector(imgId);
+  hangmanImg.src = `../img/hangman${8 - guessesLeft}.png`;
+};
+
+const handleCorrectLetter = (liClass, foundIndices, selectedLetter) => {
+  const gameLetters = document.getElementsByClassName(liClass);
+  foundIndices.forEach((index) => {
+    const toBeUpdatedLetter = gameLetters[index];
+    toBeUpdatedLetter.textContent = selectedLetter;
+  });
+};
+
 // Get the feedback if the letter was correct or not
-socket.on('feedback', ({ letter, foundIndices, guessesLeft }) => {
-  if (foundIndices.length === 0) {
-    const hangmanImg = document.querySelector('#player-hangman-img');
-    hangmanImg.src = `../img/hangman${8 - guessesLeft}.png`;
-  } else handleCorrectFeedback(letter, foundIndices);
-
-  const gameLetters = document.getElementsByClassName('game__player__letters__letter');
-  if (isFullyCorrectAnswer(gameLetters)) return alert('Game won');
-
-  return disableAlreadyChosenLetter(letter);
+socket.on('chooseLetterFeedback', ({ selectedLetter, foundIndices, guessesLeft, who }) => {
+  if (who === 'self') {
+    if (foundIndices.length === 0) handleWrongLetter('#player-hangman-img', guessesLeft);
+    else handleCorrectLetter('game__player__letters__letter', foundIndices, selectedLetter);
+    disableAlreadyChosenLetter(selectedLetter);
+  } else if (who === 'opponent') {
+    if (foundIndices.length === 0) handleWrongLetter('#opponent-hangman-img', guessesLeft);
+    else handleCorrectLetter('game__opponent__letters__letter', foundIndices, selectedLetter);
+  }
 });
 
-socket.on('gameOver', (hangmanCurrentWord) => {
-  const hangmanImg = document.querySelector('#player-hangman-img');
-  hangmanImg.src = '../img/hangman8.png';
-  return alert(`Failed. The correct word was ${hangmanCurrentWord}`);
+socket.on('gameWon', () => {
+  alert('You won the game!');
+  window.location.href = '/';
+});
+
+socket.on('opponentWon', (word) => {
+  alert(`Opponent won the game :(. Your word was ${word}`);
+  window.location.href = '/';
+});
+
+socket.on('noGuessesLeft', (word) => {
+  alert(`You have no guesses left :(. Your word was ${word}`);
+  disableAllKeyboardLetters();
+});
+
+socket.on('opponentNoGuessesLeft', () => {
+  alert('Opponent has no guesses left!');
+});
+
+socket.on('bothLost', (word) => {
+  alert(`Both sides failed :(. Your word was ${word}`);
 });

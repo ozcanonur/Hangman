@@ -1,6 +1,9 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
+const { getRandomWord } = require('./hangman');
+const words = require('../words');
+
 const validateUser = (users, username, room) => {
   if (!username || !room) return { error: 'Username and room are required' };
 
@@ -17,7 +20,7 @@ const validateRoom = (users, room) => {
   if (roomSize === 2) return { error: 'Room is full' };
 };
 
-const addUser = (users, id, username, room, word) => {
+const addUser = (users, id, username, room) => {
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
@@ -27,8 +30,11 @@ const addUser = (users, id, username, room, word) => {
   const isRoomFull = validateRoom(users, room);
   if (isRoomFull) return isRoomFull;
 
-  // Store user, this is questionable? why do we keep user list on client side
-  const user = { id, username, room, word };
+  // Store user
+  const word = getRandomWord(words, 1);
+  const lettersLeftToGuess = word.split('');
+  const guessesLeft = 7;
+  const user = { id, username, room, word, lettersLeftToGuess, guessesLeft };
   users.push(user);
   return { user };
 };

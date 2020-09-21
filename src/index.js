@@ -1,3 +1,5 @@
+/* eslint-disable nonblock-statement-body-position */
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 const http = require('http');
@@ -17,19 +19,15 @@ const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirectoryPath));
 
-const { getRandomWord } = require('./utils/hangman');
+const { findIndicesOfLetterInWord } = require('./utils/hangman');
 
-const words = require('./words');
 // WOOP WOOP room name and user name lower case fucks up
 const users = [];
 
 io.on('connection', (socket) => {
-  const word = getRandomWord(words, 50);
-  let guessesLeft = 7;
-
   socket.on('join', ({ username, room }, callback) => {
     // Add the user to users list, {id, username, room}
-    const { error, user } = addUser(users, socket.id, username, room, word);
+    const { error, user } = addUser(users, socket.id, username, room);
     if (error) return callback(error);
 
     // Join the room
@@ -37,7 +35,9 @@ io.on('connection', (socket) => {
     // Emit welcome message to self
     socket.emit('message', { name: 'Admin', message: `Welcome ${user.username}` });
     // Emit user joined message to others
-    socket.broadcast.to(user.room).emit('message', { name: user.username, message: 'has entered the room.' });
+    socket.broadcast
+      .to(user.room)
+      .emit('message', { name: user.username, message: 'has entered the room.' });
 
     // Find opponent
     const opponent = users.find((e) => e.room === room && e.username !== username);
@@ -49,11 +49,11 @@ io.on('connection', (socket) => {
     }
 
     // Setup own board
-    socket.emit('setupBoard', word.length);
+    socket.emit('setupBoard', user.word.length);
     // Setup opponent's board
     if (opponent) socket.emit('opponentBoard', opponent.word.length);
     // Send own board to opponent
-    socket.broadcast.to(user.room).emit('opponentBoard', word.length);
+    socket.broadcast.to(user.room).emit('opponentBoard', user.word.length);
 
     callback();
   });
@@ -61,24 +61,70 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     // Remove user from the users list, return the removed user
     const user = removeUser(users, socket.id);
-    if (user) io.to(user.room).emit('message', { name: user.username, message: 'has left the room.' });
+    if (user) {
+      io.to(user.room).emit('message', { name: user.username, message: 'has left the room.' });
+    }
   });
 
   socket.on('message', (message, callback) => {
     // Get the user who sent the message and emit the message to everyone in room
     const user = getUser(users, socket.id);
-    io.to(user.room).emit('message', { name: user.username, message, createdAt: new Date().getTime() });
+    io.to(user.room).emit('message', {
+      name: user.username,
+      message,
+      createdAt: new Date().getTime(),
+    });
     callback();
   });
 
-  // socket.on('select', (letter) => {
-  //   const foundIndices = findIndicesOfLetterInWord(word, letter);
-  //   if (foundIndices.length === 0) guessesLeft -= 1;
+  socket.on('chooseLetter', ({ selectedLetter, username }) => {
+    const user = users.find((e) => e.username === username);
+    // Find indices where this letter appears
+    const foundIndices = findIndicesOfLetterInWord(user.word, selectedLetter);
+    // -1 guess left is no found
+    if (foundIndices.length === 0) user.guessesLeft -= 1;
 
-  //   if (guessesLeft === 0) return io.emit('gameOver', word);
+    // If both side loses
+    const isBothLost = !users.some((e) => e.guessesLeft > 0);
+    if (isBothLost) return io.to(user.room).emit('bothLost', user.word);
 
-  //   return io.emit('feedback', { letter, foundIndices, guessesLeft });
-  // });
+    // One player loses
+    if (user.guessesLeft === 0) {
+      // Emit to SELF that you have no guesses left
+      socket.emit('noGuessesLeft', user.word);
+      // Emit to OPPONENT that you have no guesses left
+      return socket.broadcast.to(user.room).emit('opponentNoGuessesLeft');
+    }
+
+    // One player wins
+    // Remove foundindices from lettersLeftToGuess in user object
+    user.lettersLeftToGuess = user.lettersLeftToGuess.filter((letter) => letter !== selectedLetter);
+    if (user.lettersLeftToGuess.length === 0) {
+      // Emit to SELF that you won the game
+      socket.emit('gameWon');
+      // Emit to OPPONENT that you won the game
+      const opponent = users.find((e) => e.room === user.room && e.username !== username);
+      return socket.broadcast.to(user.room).emit('opponentWon', opponent.word);
+    }
+
+    // Emit the feedback to SELF
+    const selfFeedback = {
+      selectedLetter,
+      foundIndices,
+      guessesLeft: user.guessesLeft,
+      who: 'self',
+    };
+    socket.emit('chooseLetterFeedback', selfFeedback);
+
+    // Emit the SELF feedback to opponent
+    const opponentFeedback = {
+      selectedLetter,
+      foundIndices,
+      guessesLeft: user.guessesLeft,
+      who: 'opponent',
+    };
+    return socket.broadcast.to(user.room).emit('chooseLetterFeedback', opponentFeedback);
+  });
 });
 
 server.listen(port, () => {
