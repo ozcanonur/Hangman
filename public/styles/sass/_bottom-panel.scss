@@ -10,7 +10,7 @@
     background-color: rgba($color-dark-blue, 0.8);
 
     &__chat {
-      height: 80%;
+      height: 70%;
       padding: 2rem;
       padding-bottom: 1rem;
 
@@ -25,7 +25,7 @@
     }
 
     &__typing-area {
-      height: 20%;
+      height: 30%;
       padding: 2rem;
       padding-top: 1rem;
       display: flex;
@@ -54,23 +54,6 @@
           transform: scale(1.1);
         }
       }
-    }
-
-    &__life--user {
-      position: absolute;
-      background-color: antiquewhite;
-      top: -10rem;
-      height: 10rem;
-      width: 10rem;
-    }
-
-    &__life--enemy {
-      position: absolute;
-      background-color: antiquewhite;
-      top: -10rem;
-      right: 0;
-      height: 10rem;
-      width: 10rem;
     }
   }
 
@@ -107,6 +90,16 @@
         @media (max-width: 1820px) {
           font-size: 3rem;
           width: 4rem;
+        }
+
+        @media (max-height: 950px) {
+          font-size: 2.5rem;
+          width: 3.5rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: 2rem;
+          width: 3rem;
         }
 
         @media (max-width: 1350px) {

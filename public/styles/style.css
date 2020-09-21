@@ -324,7 +324,7 @@ html {
     position: relative;
     background-color: rgba(65, 103, 136, 0.8); }
     .bottom-panel__chat-panel__chat {
-      height: 80%;
+      height: 70%;
       padding: 2rem;
       padding-bottom: 1rem; }
       .bottom-panel__chat-panel__chat__messages {
@@ -335,7 +335,7 @@ html {
         overflow: auto;
         background-color: white; }
     .bottom-panel__chat-panel__typing-area {
-      height: 20%;
+      height: 30%;
       padding: 2rem;
       padding-top: 1rem;
       display: flex; }
@@ -358,19 +358,6 @@ html {
         font-size: 1.6rem; }
         .bottom-panel__chat-panel__typing-area__button:hover {
           transform: scale(1.1); }
-    .bottom-panel__chat-panel__life--user {
-      position: absolute;
-      background-color: antiquewhite;
-      top: -10rem;
-      height: 10rem;
-      width: 10rem; }
-    .bottom-panel__chat-panel__life--enemy {
-      position: absolute;
-      background-color: antiquewhite;
-      top: -10rem;
-      right: 0;
-      height: 10rem;
-      width: 10rem; }
   .bottom-panel__keyboard {
     width: 25%;
     background-color: rgba(65, 103, 136, 0.8);
@@ -402,6 +389,14 @@ html {
           .bottom-panel__keyboard__list__letter {
             font-size: 3rem;
             width: 4rem; } }
+        @media (max-height: 950px) {
+          .bottom-panel__keyboard__list__letter {
+            font-size: 2.5rem;
+            width: 3.5rem; } }
+        @media (max-height: 800px) {
+          .bottom-panel__keyboard__list__letter {
+            font-size: 2rem;
+            width: 3rem; } }
         @media (max-width: 1350px) {
           .bottom-panel__keyboard__list__letter {
             font-size: 2.5rem;
